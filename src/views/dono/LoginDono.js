@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     input:{
-        paddingBottom: 
+        
     }
 });
