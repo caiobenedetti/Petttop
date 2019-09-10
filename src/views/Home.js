@@ -14,7 +14,7 @@ export default class Home extends Component {
               <Icon name='paw' style={styles.donoIcon}/>
               <Text style={styles.donoTexto}>Dono</Text>
             </Row>
-            <Row style={styles.cuidador} onTouchEnd={() => navigate('cuidadorNavigation')}>
+            <Row style={styles.cuidador} onTouchEnd={() => navigate('LoginCuidador')}>
               <Icon name='home' style={styles.cuidadorIcon} />
               <Text style={styles.cuidadorTexto}>Cuidador</Text>
             </Row>

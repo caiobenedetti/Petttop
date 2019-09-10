@@ -12,11 +12,11 @@ export default class LoginDono extends Component {
                 
                 <Text style={styles.titulo}>PETTOP</Text>
                 <Form>
-                    <Item style={styles.input} bordered>
-                        <Input placeholder='Usuário' textContentType='username' placeholderTextColor='#FFF'></Input>
+                    <Item style={styles.input} >
+                        <Input placeholder='Usuário' textContentType='username' placeholderTextColor='#06469E'></Input>
                     </Item>
                     <Item style={styles.input}>
-                        <Input placeholder='Senha' secureTextEntry placeholderTextColor='#FFF'></Input>
+                        <Input placeholder='Senha' secureTextEntry placeholderTextColor='#06469E'></Input>
                     </Item>
                     <Button rounded style={styles.botao}><Text style={styles.texto}>Login</Text></Button>
                 </Form>
@@ -28,16 +28,17 @@ export default class LoginDono extends Component {
 
 const styles = StyleSheet.create({
     main:{
-        backgroundColor:'#06469E',
+        backgroundColor:'#FF8A00',
         justifyContent: 'center',
     },
     input:{
         marginBottom: heightPercentageToDP(5),
         marginHorizontal: widthPercentageToDP(5),
+        borderBottomColor: '#06469E'
     },
     titulo:{
         fontFamily:'Intro',
-        color:'#FFF',
+        color:'#06469E',
         alignSelf:'center',
         marginBottom:heightPercentageToDP(15),
         fontSize:heightPercentageToDP(10),
@@ -47,16 +48,16 @@ const styles = StyleSheet.create({
         marginHorizontal: widthPercentageToDP(5),
         justifyContent:'center',
         marginBottom: heightPercentageToDP(5),
-        backgroundColor: '#FFF'
+        backgroundColor:'#06469E'
     },
     texto:{
         fontFamily:'Intro',
         fontSize:heightPercentageToDP(3),
-        color:'#06469E'
+        color:'#FF8A00'
     },
     cadastro:{
         fontFamily:'Intro',
-        color:'#FFF',
+        color:'#06469E',
         alignSelf:'center',
         textDecorationLine:'underline',
         marginTop:heightPercentageToDP(5),
