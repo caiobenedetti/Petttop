@@ -7,6 +7,7 @@ const {width, height} = Dimensions.get('window');
 
 export default class LoginDono extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <Container style={styles.main}>
                 
@@ -18,9 +19,9 @@ export default class LoginDono extends Component {
                     <Item style={styles.input}>
                         <Input placeholder='Senha' secureTextEntry placeholderTextColor='#06469E'></Input>
                     </Item>
-                    <Button rounded style={styles.botao}><Text style={styles.texto}>Login</Text></Button>
+                    <Button rounded style={styles.botao}><Text style={styles.texto} onPress={() => navigate('cuidadorNavigation')}>Login</Text></Button>
                 </Form>
-                <Text  style={styles.cadastro}>Cadastre-se</Text>
+                <Text  style={styles.cadastro} onPress={() => navigate('CadastroCuidador')}>Cadastre-se</Text>
             </Container>
         )
     }

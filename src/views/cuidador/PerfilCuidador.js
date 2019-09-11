@@ -3,13 +3,16 @@ import { Text, View, StyleSheet } from 'react-native';
 import {Container, Header, Footer, FooterTab, Button} from 'native-base';
 import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive-screen';
 
-export default class MainCuidador extends Component {
+export default class MainDono extends Component {
     render() {
         return (
             <Container style={styles.main}>
                 <Header style={styles.header}>
                     <Text style={styles.titulo}>PETTOP</Text>
                 </Header>
+                <Text>
+                    Teste
+                </Text>
             </Container>
         )       
     }

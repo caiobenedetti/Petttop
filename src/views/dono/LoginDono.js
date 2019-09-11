@@ -3,10 +3,11 @@ import { StyleSheet, Dimensions } from 'react-native'
 import {Form, Item, Container, Input, Button, Text} from 'native-base'
 import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive-screen'
 
-const {width, height} = Dimensions.get('window');
+
 
 export default class LoginDono extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <Container style={styles.main}>
                 
@@ -18,9 +19,9 @@ export default class LoginDono extends Component {
                     <Item style={styles.input}>
                         <Input placeholder='Senha' secureTextEntry placeholderTextColor='#FFF'></Input>
                     </Item>
-                    <Button rounded style={styles.botao}><Text style={styles.texto}>Login</Text></Button>
+                    <Button rounded style={styles.botao}><Text style={styles.texto} onPress={() => navigate('donoNavigation')}>Login</Text></Button>
                 </Form>
-                <Text  style={styles.cadastro}>Cadastre-se</Text>
+                <Text style={styles.cadastro} onPress={() => navigate('CadastroDono')}>Cadastre-se</Text>
             </Container>
         )
     }
