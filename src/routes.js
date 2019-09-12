@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
-import {createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 import Home from './views/Home';
 
-import MainCuidador from './views/cuidador/MainCuidador';
 import LoginDono from './views/dono/LoginDono';
 import LoginCuidador from './views/cuidador/LoginCuidador';
 import DonoFooterTabs from './config/DonoFooterTabs';
