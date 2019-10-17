@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 import {Form, Item, Container, Input, Button, Text} from 'native-base';
-import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive-screen';
+import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive-screen';;
 
 export default class CadastroDono extends Component {
-    render() {
+    
+    constructor(props){
+        
+        super(props);
+        this.state = {usuario: '', email: '', senha: ''};
+        this.handleClick = this.handleClick.bind(this);
+    
+    }
+
+    handleClick(e){
         const { navigate } = this.props.navigation;
+        e.preventDefault();
+        alert(this.state.usuario);
+        navigate('cuidadorNavigation');
+    }
+    
+
+    render() {
         return (
             <Container style={styles.main}>
                 <Text style={styles.titulo}>PETTOP</Text>
+                <Text >{this.state.usuario}</Text>
                 <Text style={styles.h2}>Cadastro</Text>
                 <Form>
                     <Item style={styles.input} >
-                        <Input placeholder='Usuário' textContentType='username' placeholderTextColor='#06469E'></Input>
+                        <Input placeholder='Usuário' textContentType='username' value={this.state.usuario} placeholderTextColor='#06469E' onChangeText={(text) => this.setState({usuario: text})} ></Input>
                     </Item>
                     <Item style={styles.input} >
-                        <Input placeholder='E-mail' textContentType='emailAddress' placeholderTextColor='#06469E'></Input>
+                        <Input placeholder='E-mail' textContentType='emailAddress' value={this.state.email} placeholderTextColor='#06469E' onChangeText={(text) => this.setState({email: text})}></Input>
                     </Item>
                     <Item style={styles.input}>
-                        <Input placeholder='Senha' secureTextEntry placeholderTextColor='#06469E'></Input>
+                        <Input placeholder='Senha' secureTextEntry value={this.state.senha} placeholderTextColor='#06469E' onChangeText={(text) => this.setState({senha: text})}></Input>
                     </Item>
-                    <Button rounded style={styles.botao} onPress={() => navigate('cuidadorNavigation')}><Text style={styles.texto}>Cadastrar</Text></Button>
+                    <Button rounded style={styles.botao} onPress={this.handleClick}><Text style={styles.texto}>Cadastrar</Text></Button>
                 </Form>
             </Container>
         )
