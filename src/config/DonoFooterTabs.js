@@ -31,7 +31,7 @@ export default donoNavigation = createBottomTabNavigator({
         },
     }
 }, {
-    order:['Perfil', 'Home', 'Pesquisa'],
+    order:['Home', 'Perfil', 'Pesquisa'],
     tabBarOptions:{
         showIcon:true,
         activeTintColor:'#FFF',
