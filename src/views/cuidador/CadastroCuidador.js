@@ -24,7 +24,6 @@ export default class CadastroDono extends Component {
     render() {
         return (
             <Container style={styles.main}>
-                <Text style={styles.titulo}>PETTOP</Text>
                 <Text >{this.state.usuario}</Text>
                 <Text style={styles.h2}>Cadastro</Text>
                 <Form>

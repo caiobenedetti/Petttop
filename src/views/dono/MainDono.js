@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     map:{
-        width:widthPercentageToDP(96),
-        height:heightPercentageToDP(90),
+        width:widthPercentageToDP(90),
+        height:heightPercentageToDP(80),
         alignSelf:'center',
     }
 ,});

@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faFish, faDog, faCat} from '@fortawesome/free-solid-svg-icons';
 
 const dataArray = [
-    { title: "Dog", content: "Descrição do dog" },
-    { title: "Cat", content: "Descrição do cat" },
-    { title: "Pexe", content: "Descrição do pexe" }
+    { title: "Animal 1", content: "Descrição animal 1" },
+    { title: "Animal 2", content: "Descrição do cat" },
+    { title: "Animal 3", content: "Descrição do pexe" }
 ];
 
 export default class PerfilDono extends Component {
@@ -63,30 +63,7 @@ export default class PerfilDono extends Component {
                     <Text style={styles.h1}>Descrição</Text>
                     <Text style={styles.texto}>Sua descrição aqui</Text>
                     <Text style={styles.h1}>Animais</Text>
-                    <Accordion dataArray={dataArray} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>
-                    <Fab
-                        active={this.state.active}
-                        direction="down"
-                        containerStyle={{ }}
-                        style={{ backgroundColor: '#06469E' }}
-                        position='topRight'
-                        onPress={() => this.setState({ active: !this.state.active })}
-                    >
-                    
-                        <Icon name="add" />
-
-                        <Button style={{ backgroundColor: '#34A34F' }}>
-                            <FontAwesomeIcon icon={faFish} color='#FFF'/>
-                        </Button>
-                        
-                        <Button style={{ backgroundColor: '#3B5998' }}>
-                            <FontAwesomeIcon icon={faCat} color='#FFF'/>
-                        </Button>
-
-                        <Button disabled style={{ backgroundColor: '#DD5144' }}>
-                            <FontAwesomeIcon icon={faDog} color='#FFF'/>
-                        </Button>
-                    </Fab>                
+                    <Accordion dataArray={dataArray} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>    
                 </Content>
                
             </Container>
