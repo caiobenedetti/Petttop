@@ -1,14 +1,17 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, View, StyleSheet , PermissionsAndroid  } from 'react-native';
 import {Container, Header, Footer, FooterTab, Button, Body} from 'native-base';
 import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive-screen';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
+import api from '../../services/api';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class MainDono extends Component {
     constructor(props){
         super(props);
-        this.state = {latitude: 0, longitude: 0, error: ''}
+        this.state = {latitude: 0, longitude: 0, error: '', cuidadores: []}
         this.onChangeRegiao = this.onChangeRegiao.bind(this);
     }
 
@@ -36,13 +39,17 @@ export default class MainDono extends Component {
                     console.log(error.code, error.message);
                 },
                 { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-            );
+            ); 
+            let cuidadores = await api.get('/cuidadors');
+            cuidadores = cuidadores.data.data.data
+            await this.setState({cuidadores: cuidadores});
         }
     }
 
     render() {
         return (
             <Container style={styles.main}>
+                <ScrollView>
                 <Header style={styles.header}>
                     <Text style={styles.titulo}>PETTOP</Text>
                 </Header>
@@ -54,8 +61,28 @@ export default class MainDono extends Component {
                             latitudeDelta: 1,
                             longitudeDelta: 1,
                         }}
-                    />
+                    >
+                    {
+                        this.state.cuidadores.map((cuidador) => {
+                            const LatLong = {
+                                latitude: cuidador.latitude,
+                                longitude: cuidador.longitude,
+                            }
+                            
+                            return (
+                                <Marker
+                                    coordinate={LatLong}
+                                    title={cuidador.nome}
+                                    description={cuidador.endereco}
+                                />
+                            );
+                        }) 
+
+                       
+                    }  
+                    </MapView>
                 </Body>
+                </ScrollView>
             </Container>
         )       
     }

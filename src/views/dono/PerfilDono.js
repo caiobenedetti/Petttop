@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Text, StyleSheet, Image, View } from 'react-native';
 import {Container, Header, Content, Fab, Button, Accordion} from 'native-base';
@@ -19,19 +20,36 @@ export default class PerfilDono extends Component {
         super(props)
         this.state = {
           active: false,
-          user: {}
+          user: {},
+          dono: {},
+          animais: [],
         };
     }
 
     async componentDidMount() {
-        const auth = await AsyncStorage.getItem('@Pettop:token');
-        console.log(auth);
-        const user = api.get('/users', {
-            auth: auth
-        })
-        console.log(user);
-        let dono = await api.get(`/donos/${auth.user.id}`);
-        console.log(dono);
+        const token = await AsyncStorage.getItem('@Pettop:token');
+        console.log(token);
+        const user = await api.get('/users', {
+            headers: {'Authorization' : `Bearer ${token}`}
+        });
+        this.setState({user: user.data});
+        let dono = await api.post('/donosa', {
+            id : this.state.user.id
+        });
+        this.setState({dono: dono.data});
+        
+        let animais = await api.post('/animais', {
+            id: this.state.dono.id
+        });
+
+        let array = [];
+
+        await animais.data.map(async (animal) => {
+            console.log('a')
+        });
+
+        this.setState({animais: array});
+
     }
     _renderHeader(item, expanded) {
         return (
@@ -73,11 +91,9 @@ export default class PerfilDono extends Component {
                 <Content padder>
                     <Image resizeMode='center' style={styles.foto} source={require('../../img/logo.jpg')}/>
                     <Text style={styles.h1}>Nome</Text>
-                    <Text style={styles.texto}>Seu nome aqui</Text>
-                    <Text style={styles.h1}>Descrição</Text>
-                    <Text style={styles.texto}>Sua descrição aqui</Text>
+                    <Text style={styles.texto}>{JSON.stringify(this.state.animais)}</Text>
                     <Text style={styles.h1}>Animais</Text>
-                    <Accordion dataArray={dataArray} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>    
+                    <Accordion dataArray={this.state.animais} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>    
                 </Content>
                
             </Container>

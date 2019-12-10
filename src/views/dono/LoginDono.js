@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react'
 import { StyleSheet, Dimensions } from 'react-native'
 import {Form, Item, Container, Input, Button, Text} from 'native-base'

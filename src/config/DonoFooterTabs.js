@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import Icon from 'react-native-ionicons';
 import MainDono from '../views/dono/MainDono';

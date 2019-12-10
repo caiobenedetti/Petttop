@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import Icon from 'react-native-ionicons';
 import MainCuidador from '../views/cuidador/MainCuidador';
 import PerfilCuidador from '../views/cuidador/PerfilCuidador';
-import {createBottomTabNavigator } from 'react-navigation'
+import {createBottomTabNavigator } from 'react-navigation';
+
 
 export default cuidadorNavigation = createBottomTabNavigator({
     Home:{
@@ -22,12 +24,12 @@ export default cuidadorNavigation = createBottomTabNavigator({
         },
     }, 
 }, {
+    order:['Perfil', 'Home'],
     tabBarOptions:{
         showIcon:true,
-        order:['Perfil', 'Home'],
-        activeTintColor:'#06469E',
+        activeTintColor:'#FFF',
         inactiveTintColor:'#FF8A00',
         activeBackgroundColor:'#FF8A00',
-        inactiveBackgroundColor:'#06469E',
+        inactiveBackgroundColor:'#FFF',
     }
 });
