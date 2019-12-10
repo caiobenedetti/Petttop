@@ -25,6 +25,7 @@ export default class LoginDono extends Component {
                 password: this.state.senha
             }).then( async (response) => {
                 await AsyncStorage.setItem('@Pettop:token', response.data.token);
+                console.log('ok');
                 navigate('donoNavigation');
             }).catch(err => {
                 this.setState({error: 'Fudeu'})

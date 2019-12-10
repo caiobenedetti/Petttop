@@ -5,6 +5,8 @@ import {widthPercentageToDP, heightPercentageToDP} from 'react-native-responsive
 import Icon from 'react-native-ionicons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faFish, faDog, faCat} from '@fortawesome/free-solid-svg-icons';
+import AsyncStorage from '@react-native-community/async-storage';
+import api from '../../services/api';
 
 const dataArray = [
     { title: "Animal 1", content: "Descrição animal 1" },
@@ -16,8 +18,20 @@ export default class PerfilDono extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          active: false
+          active: false,
+          user: {}
         };
+    }
+
+    async componentDidMount() {
+        const auth = await AsyncStorage.getItem('@Pettop:token');
+        console.log(auth);
+        const user = api.get('/users', {
+            auth: auth
+        })
+        console.log(user);
+        let dono = await api.get(`/donos/${auth.user.id}`);
+        console.log(dono);
     }
     _renderHeader(item, expanded) {
         return (

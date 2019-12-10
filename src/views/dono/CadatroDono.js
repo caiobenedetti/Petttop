@@ -47,7 +47,7 @@ export default class CadastroDono extends Component {
                     cpf: this.state.cpf,
                     rg: this.state.rg,
                     endereco: this.state.rua + ', ' + this.state.numero + ' - ' + this.state.bairro + ' ' + this.state.cidade,
-                    user_id: user.id
+                    user_id: user.data.id
                 });
                 
                 console.log('sucesso1')
