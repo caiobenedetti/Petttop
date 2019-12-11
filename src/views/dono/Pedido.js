@@ -65,10 +65,6 @@ export default class Pedido extends Component {
                 <Header style={styles.header}>
                     <Text style={styles.titulo}>PETTOP</Text>
                 </Header>
-                <Text>{this.state.animal}</Text>
-                <Text>{this.state.cuidador}</Text>
-                <Text>{this.state.duracao}</Text>
-                <Text>{this.state.preco}</Text>
                     <Form>
                         <Item style={styles.input}>
                         <Input
@@ -82,7 +78,10 @@ export default class Pedido extends Component {
                             })}
                         />
                         </Item>
-                        <Text style={styles.h3}>Selecione o pet</Text>
+                        <Text>{this.state.animal}</Text>
+                <Text>{this.state.cuidador}</Text>
+                <Text>{this.state.duracao}</Text>
+                <Text>{this.state.preco}</Text>                 <Text style={styles.h3}>Selecione o pet</Text>
 
                         <Picker
 
