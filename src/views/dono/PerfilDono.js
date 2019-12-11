@@ -16,6 +16,7 @@ const dataArray = [
 ];
 
 export default class PerfilDono extends Component {
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -26,38 +27,40 @@ export default class PerfilDono extends Component {
         };
     }
 
-    async componentDidUpdate(){
-        console.log('teste');
-    }
-    
     async componentDidMount() {
-        const token = await AsyncStorage.getItem('@Pettop:token');
-        console.log(token);
-        const user = await api.get('/users', {
-            headers: {'Authorization' : `Bearer ${token}`}
+        const { navigation } = this.props;
+        //Adding an event listner om focus
+        //So whenever the screen will have focus it will set the state to zero
+            this.focusListener = navigation.addListener('didFocus', async () => {
+                const token = await AsyncStorage.getItem('@Pettop:token');
+                console.log(token);
+                const user = await api.get('/users', {
+                    headers: {'Authorization' : `Bearer ${token}`}
+                });
+                this.setState({user: user.data});
+                let dono = await api.post('/donosa', {
+                    id : this.state.user.id
+                });
+                this.setState({dono: dono.data});
+                
+                let animais = await api.post('/animais', {
+                    id: this.state.dono.id
+                });
+
+
+                console.log(animais.data);
+
+                let array = []
+                await animais.data.map(async (animal) => {
+                    await array.push({
+                        title: animal.nome,
+                        content: animal.descricao
+                    })
+                })
+
+                this.setState({animais: array});
         });
-        this.setState({user: user.data});
-        let dono = await api.post('/donosa', {
-            id : this.state.user.id
-        });
-        this.setState({dono: dono.data});
         
-        let animais = await api.post('/animais', {
-            id: this.state.dono.id
-        });
-
-
-        console.log(animais.data);
-
-        let array = []
-        await animais.data.map(async (animal) => {
-            await array.push({
-                title: animal.nome,
-                content: animal.descricao
-            })
-        })
-
-        this.setState({animais: array});
 
     }
     _renderHeader(item, expanded) {

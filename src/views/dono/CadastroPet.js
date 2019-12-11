@@ -26,7 +26,6 @@ export default class CadastroPet extends Component {
     this.onValueChange = this.onValueChange.bind(this);
   }
   async componentDidMount(){
-
     const token = await AsyncStorage.getItem('@Pettop:token');
     const user = await api.get('/users', {
         headers: {'Authorization' : `Bearer ${token}`}
