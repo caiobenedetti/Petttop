@@ -21,8 +21,8 @@ export default class MainCuidador extends Component {
             cuidador: {},
             a: []
         }
-        let array= [];
     }
+
 
     _renderHeader(item, expanded) {
         return (
@@ -31,7 +31,7 @@ export default class MainCuidador extends Component {
             padding: 10,
             justifyContent: "space-between",
             alignItems: "center" ,
-            backgroundColor: "#06469E" }}>
+            backgroundColor: "#FF8A00" }}>
             <Text style={{ color:'#FFF', fontFamily:'Intro', fontSize:heightPercentageToDP(3) }}>
               {" "}{item.title}
             </Text>
@@ -47,7 +47,7 @@ export default class MainCuidador extends Component {
             style={{
               backgroundColor: "#FFF",
               padding: 10,
-              color:'#06469E',
+              color:'#FF8A00',
               fontFamily:'Intro'
             }}
           >
@@ -72,25 +72,25 @@ export default class MainCuidador extends Component {
         });
 
         await this.setState({pedidos: pedidos.data});
-        
-        await sleep(1000);
 
         
+        let array = [] 
         for (let i = 0; i < pedidos.data.length; i++){
-            api.post('/anima', {
+            await api.post('/anima', {
                 id: pedidos.data[i].animal_id
-            }).then(e => {array.push(e)});
+            }).then(e => {array.push(e.data)});
         }
 
-        this.setState({a:array});
+        let data = [];
+        for(let i = 0; i < pedidos.data.length; i++){
+            data.push({
+                title: array[i].nome,
+                content: "Duração de " + pedidos.data[i].duracao + " dias - Preço : R$" + pedidos.data[i].preco
+            })
+        }
         
-        
+        this.setState({a:data});
 
-        
-        
-        
-
-        
     }
 
     render() {
@@ -99,12 +99,8 @@ export default class MainCuidador extends Component {
                 <Header style={styles.header}>
                     <Text style={styles.titulo}>PETTOP</Text>
                 </Header>
-                <Body style={{justifyContent: 'center'}}>
-                    {/* {
-                        <Accordion style={ {flex: 1}}dataArray={this.state.pedidos} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>
-                    } */}
-                    <Text>{JSON.stringify(this.state.pedidos[0])}</Text>
-                    <Text>{JSON.stringify(this.state.a)}</Text>
+                <Body style={styles.centro}>
+                    <Accordion style={{flex: 1, marginTop: heightPercentageToDP(30)}} dataArray={this.state.a} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>
                 </Body>
             </Container>
         )       
@@ -115,6 +111,9 @@ const styles = StyleSheet.create({
     main:{
         backgroundColor:'#FFF',
     },
+    centro:{
+        alignItems:'center'
+    }, 
     header:{
         elevation: 10,
         backgroundColor:'#FF8A00',
