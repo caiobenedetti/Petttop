@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default class MainDono extends Component {
     constructor(props){
         super(props);
-        this.state = {latitude: 0, longitude: 0, error: '', cuidadores: []}
+        this.state = {latitude: 0, longitude: 0, error: '', cuidadores: [], cuidador: 0}
     }
 
     onChangeRegiao(regiao){
@@ -71,15 +71,15 @@ export default class MainDono extends Component {
                             
                             return (
                                 <Marker
+                                    key={cuidador.id}
+                                    identifier={cuidador.nome}
                                     coordinate={LatLong}
                                     title={cuidador.nome}
                                     description={cuidador.endereco}
-                                    onCalloutPress={() => navigate('Pedido')}
+                                    onCalloutPress={() => navigate('Pedido', {cuidador: cuidador.id})}
                                 />
                             );
                         }) 
-
-                       
                     }  
                     </MapView>
                 </Body>
