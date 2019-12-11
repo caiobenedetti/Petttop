@@ -9,6 +9,8 @@ import DonoFooterTabs from './config/DonoFooterTabs';
 import CuidadorFooterTabs from './config/CuidadorFooterTabs';
 import CadastroCuidador from './views/cuidador/CadastroCuidador';
 import CadastroDono from './views/dono/CadatroDono';
+import CadastroPet from './views/dono/CadastroPet';
+import Pedido from './views/dono/Pedido';
 import './config/StatusBarConfig';
 
 const donoNavigation = DonoFooterTabs;
@@ -20,9 +22,11 @@ const mainNavigation = createStackNavigator({
     LoginDono,
     LoginCuidador,
     CadastroCuidador,
+    CadastroPet,
     CadastroDono,
     donoNavigation,
     cuidadorNavigation,
+    Pedido
 }, {
     headerMode:'none',
 });

@@ -12,7 +12,6 @@ export default class MainDono extends Component {
     constructor(props){
         super(props);
         this.state = {latitude: 0, longitude: 0, error: '', cuidadores: []}
-        this.onChangeRegiao = this.onChangeRegiao.bind(this);
     }
 
     onChangeRegiao(regiao){
@@ -47,6 +46,7 @@ export default class MainDono extends Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <Container style={styles.main}>
                 <ScrollView>
@@ -74,6 +74,7 @@ export default class MainDono extends Component {
                                     coordinate={LatLong}
                                     title={cuidador.nome}
                                     description={cuidador.endereco}
+                                    onCalloutPress={() => navigate('Pedido')}
                                 />
                             );
                         }) 

@@ -26,6 +26,10 @@ export default class PerfilDono extends Component {
         };
     }
 
+    async componentDidUpdate(){
+        console.log('teste');
+    }
+    
     async componentDidMount() {
         const token = await AsyncStorage.getItem('@Pettop:token');
         console.log(token);
@@ -42,11 +46,16 @@ export default class PerfilDono extends Component {
             id: this.state.dono.id
         });
 
-        let array = [];
 
+        console.log(animais.data);
+
+        let array = []
         await animais.data.map(async (animal) => {
-            console.log('a')
-        });
+            await array.push({
+                title: animal.nome,
+                content: animal.descricao
+            })
+        })
 
         this.setState({animais: array});
 
@@ -83,6 +92,7 @@ export default class PerfilDono extends Component {
         );
     }
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <Container style={styles.main}>
                 <Header style={styles.header}>
@@ -91,9 +101,12 @@ export default class PerfilDono extends Component {
                 <Content padder>
                     <Image resizeMode='center' style={styles.foto} source={require('../../img/logo.jpg')}/>
                     <Text style={styles.h1}>Nome</Text>
-                    <Text style={styles.texto}>{JSON.stringify(this.state.animais)}</Text>
+                    <Text style={styles.texto}>{this.state.dono.nome}</Text>
                     <Text style={styles.h1}>Animais</Text>
-                    <Accordion dataArray={this.state.animais} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>    
+                    <Accordion dataArray={this.state.animais} expanded={0} renderHeader={this._renderHeader} renderContent={this._renderContent}/>
+                    <Button rounded style={styles.botao} onPress={()=> navigate('CadastroPet')}>
+                        <Text style={styles.text}>Adicione um pet</Text>
+                    </Button>    
                 </Content>
                
             </Container>
@@ -133,6 +146,18 @@ const styles = StyleSheet.create({
     },
     texto:{
         fontFamily:'Intro'
+    },
+    text:{
+        fontFamily:'Intro',
+        fontSize:heightPercentageToDP(3),
+        color:'#FFF'
+    },
+    botao:{
+        marginTop: heightPercentageToDP(5),
+        marginHorizontal: widthPercentageToDP(5),
+        justifyContent:'center',
+        marginBottom: heightPercentageToDP(5),
+        backgroundColor: '#06469E'
     },
     accordionHeader:{
         backgroundColor:'#06469E',
